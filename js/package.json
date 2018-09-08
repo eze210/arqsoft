@@ -1,0 +1,14 @@
+{
+  "name": "arqsoft",
+  "version": "1.0.0",
+  "description": "Trabajo Practico de Arquitectura de Software",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}

@@ -1,0 +1,8 @@
+version: "2"
+
+services:
+  python:
+    build:
+      context: py
+    ports:
+      - "8000:8000"
