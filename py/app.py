@@ -6,15 +6,14 @@ app = Flask(__name__)
 
 @app.route("/")
 def root():
-	return "Hola, mundo!"
+    return "Hola, mundo!"
 
 
 @app.route("/timeout")
 def timeout():
-	time.sleep(5)
-	return "Timeout reached at: {}".format(time.time())
+    time.sleep(5)
+    return "Timeout reached at: {}".format(time.time())
 
 
 if __name__ == '__main__':
-	app.run()
-
+    app.run()
