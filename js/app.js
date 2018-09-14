@@ -2,9 +2,9 @@ const express = require("express");
 
 const app = express();
 
-const PORT = 5000
+const PORT = 3000;
 
-const TIMEOUT_SECONDS = 5
+const TIMEOUT_SECONDS = 5;
 
 app.get("/", (req, res) => {
 	res.send("Hola, mundo!");
