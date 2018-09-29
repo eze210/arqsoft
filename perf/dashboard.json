@@ -485,11 +485,11 @@
           },
           {
             "selected": false,
-            "text": "artillery_gunicorn",
-            "value": "artillery_gunicorn"
+            "text": "artillery-gunicorn",
+            "value": "artillery-gunicorn"
           }
         ],
-        "query": "artillery-node, artillery_gunicorn",
+        "query": "artillery-node, artillery-gunicorn",
         "type": "custom"
       },
       {
