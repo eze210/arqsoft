@@ -1,31 +1,37 @@
 import time
 import logging
-from flask import Flask
+from flask import Flask, request
 import urllib.request
 
 app = Flask(__name__)
 app.logger.setLevel(logging.INFO)
 
+DEFAULT_PROCESS_TIME = 5
 
 @app.route('/')
 def root():
     app.logger.info('Requested /, saying "Hola, mundo"')
+
     return 'Hola, mundo!'
 
 
 @app.route('/timeout')
 def timeout():
-    app.logger.info('Requested /timeout, sleeping 5 seconds')
-    time.sleep(5)
+    process_time = request.args.get('processTime') or DEFAULT_PROCESS_TIME
+    app.logger.info('Requested /timeout, sleeping %s seconds', process_time)
+
+    time.sleep(int(process_time))
     return 'Timeout reached at: {}'.format(time.time())
 
 
 @app.route('/cpu')
 def cpu_usage():
-    app.logger.info('Requested /cpu, using cpu for 5 seconds')
+    process_time = request.args.get('processTime') or DEFAULT_PROCESS_TIME
+    app.logger.info('Requested /cpu, using cpu for % seconds', process_time)
+    
     start = time.time()
 
-    while time.time() - start < 5:
+    while time.time() - start < int(process_time):
         987239478234879 * 98723947823947
 
     return 'Finished using cpu!'
@@ -33,9 +39,13 @@ def cpu_usage():
 
 @app.route('/external')
 def external_request():
-    url = 'https://httpstat.us/200?sleep=5000'
+    process_time = request.args.get('processTime') or DEFAULT_PROCESS_TIME
+    process_time_in_seconds = int(process_time) * 1000
+    url = 'https://httpstat.us/200?sleep=' + str(process_time_in_seconds)
+
     app.logger.info('Requested /external, making a request to ' + url)
     response = urllib.request.urlopen(url)
+
     return 'External service request finished with status: ' + str(response.status)
 
 

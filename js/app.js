@@ -4,8 +4,7 @@ const https = require('https');
 const app = express();
 
 const PORT = 3000;
-
-const TIMEOUT_SECONDS = 5;
+const DEFAULT_PROCESS_TIME = 5
 
 app.get('/', (req, res) => {
   console.log('Requested /, saying "Hola, mundo"');
@@ -13,18 +12,23 @@ app.get('/', (req, res) => {
 });
 
 app.get('/timeout', (req, res) => {
-  console.log('Requested /timeout, sleeping', TIMEOUT_SECONDS, 'seconds');
+  const process_time = req.query.processTime || DEFAULT_PROCESS_TIME;
+  const process_time_in_seconds = process_time * 1000;
+  console.log(`Requested /timeout, sleeping ${process_time} milliseconds`);
+
 	setTimeout(() => {
 		res.send('Timeout reached');
-	}, TIMEOUT_SECONDS * 1000);
+	}, process_time_in_seconds);
 });
 
 app.get('/cpu', (req, res) => {
-  console.log('Requested /cpu, using cpu for 5 seconds');
-  var start = new Date().getTime();
+  const process_time = req.query.processTime || DEFAULT_PROCESS_TIME;
+  const process_time_in_seconds = process_time * 1000;
+  console.log(`Requested /cpu, using cpu for ${process_time} milliseconds`);
 
-  var result = 0
-  while(new Date().getTime() - start < 5000) {
+  let result = 0;
+  const start = new Date().getTime();
+  while(new Date().getTime() - start < process_time_in_seconds) {
     result += Math.random() * Math.random();
   }
 
@@ -32,7 +36,10 @@ app.get('/cpu', (req, res) => {
 });
 
 app.get('/external', (req, res) => {
-  var url = 'https://httpstat.us/200?sleep=5000';
+  const process_time = req.query.processTime || DEFAULT_PROCESS_TIME;
+  const process_time_in_seconds = process_time * 1000;
+  const url = `https://httpstat.us/200?sleep=${process_time_in_seconds}`;
+
   console.log('Requested /external endpoint, making a request to ' + url);
   https.get(url, (response) => {
     const { statusCode } = response;
