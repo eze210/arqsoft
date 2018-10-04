@@ -487,9 +487,19 @@
             "selected": false,
             "text": "artillery-gunicorn",
             "value": "artillery-gunicorn"
+          },
+          {
+            "selected": false,
+            "text": "artillery-node_replicated",
+            "value": "artillery-node_replicated"
+          },
+          {
+            "selected": false,
+            "text": "artillery-gunicorn_multiworker",
+            "value": "artillery-gunicorn_multiworker"
           }
         ],
-        "query": "artillery-node, artillery-gunicorn",
+        "query": "artillery-node, artillery-gunicorn, artillery-node_replicated, artillery-gunicorn_multiworker",
         "type": "custom"
       },
       {

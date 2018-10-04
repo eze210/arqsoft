@@ -6,6 +6,12 @@ services:
         build:
           context: py
 
+    gunicorn_multiworker:
+        build:
+          context: py
+        environment:
+          - GUNICORN_WORKERS=4
+
     node:
         build:
           context: js
@@ -19,6 +25,7 @@ services:
             - ./store/static/files:/static:ro
         links:
             - gunicorn
+            - gunicorn_multiworker
             - node
 
     graphite:
