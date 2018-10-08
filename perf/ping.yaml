@@ -53,18 +53,3 @@ scenarios:
     flow:
       - get:
           url: '/'
-    weight: 8
-
-
-  - name: Heavy load
-    flow:
-      - get:
-          url: '/cpu?processTime={{ processTime }}'
-    weight: 1
-
-
-  - name: Extarnal request
-    flow:
-      - get:
-          url: '/external?processTime={{ processTime }}'
-    weight: 1

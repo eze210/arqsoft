@@ -18,13 +18,14 @@ app.get('/timeout', (req, res) => {
 
 	setTimeout(() => {
 		res.send('Timeout reached');
+    console.log('Finished sleeping, returning!');
 	}, process_time_in_seconds);
 });
 
 app.get('/cpu', (req, res) => {
   const process_time = req.query.processTime || DEFAULT_PROCESS_TIME;
   const process_time_in_seconds = process_time * 1000;
-  console.log(`Requested /cpu, using cpu for ${process_time} milliseconds`);
+  console.log(`Requested /cpu, using cpu for ${process_time} seconds`);
 
   let result = 0;
   const start = new Date().getTime();
@@ -32,6 +33,7 @@ app.get('/cpu', (req, res) => {
     result += Math.random() * Math.random();
   }
 
+  console.log('Finished using cpu, returning!');
   res.send('Finished using cpu!');
 });
 
@@ -43,6 +45,7 @@ app.get('/external', (req, res) => {
   console.log('Requested /external endpoint, making a request to ' + url);
   https.get(url, (response) => {
     const { statusCode } = response;
+    console.log('External endpoint responded, returning!');
     res.send('External service request finished with status: ' + statusCode);
   });
 });
