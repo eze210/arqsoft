@@ -18,9 +18,9 @@ Memoria: 8 GB 1867 MHz DDR3
 
 #### Screenshots
 
-![Escenarios Lanzados][images/ping/gun_ping_launches.png]
-![Requests][images/ping/gun_ping_reqs.png]
-![Tiempo de respuesta][images/ping/gun_ping_response_time.png]
+![Escenarios Lanzados](images/ping/gun_ping_launches.png)
+![Requests](images/ping/gun_ping_reqs.png)
+![Tiempo de respuesta](images/ping/gun_ping_response_time.png)
 
 ### Node
 
@@ -28,9 +28,9 @@ Memoria: 8 GB 1867 MHz DDR3
 
 #### Screenshots
 
-![Escenarios Lanzados][images/ping/node_ping_launches.png]
-![Requests][images/ping/node_ping_reqs.png]
-![Tiempo de respuesta][images/ping/node_ping_response_time.png]
+![Escenarios Lanzados](images/ping/node_ping_launches.png)
+![Requests](images/ping/node_ping_reqs.png)
+![Tiempo de respuesta](images/ping/node_ping_response_time.png)
 
 ### Node replicado
 
@@ -38,9 +38,9 @@ Memoria: 8 GB 1867 MHz DDR3
 
 #### Screenshots
 
-![Escenarios Lanzados][images/ping/noderep_ping_launches.png]
-![Requests][images/ping/noderep_ping_reqs.png]
-![Tiempo de respuesta][images/ping/noderep_ping_response_time.png]
+![Escenarios Lanzados](images/ping/noderep_ping_launches.png)
+![Requests](images/ping/noderep_ping_reqs.png)
+![Tiempo de respuesta](images/ping/noderep_ping_response_time.png)
 
 ### Gunicorn multiworker
 
@@ -48,9 +48,9 @@ Memoria: 8 GB 1867 MHz DDR3
 
 #### Screenshots
 
-![Escenarios Lanzados][images/ping/gunmw_ping_launches.png]
-![Requests][images/ping/gunmw_ping_reqs.png]
-![Tiempo de respuesta][images/ping/gunmw_ping_response_time.png]
+![Escenarios Lanzados](images/ping/gunmw_ping_launches.png)
+![Requests](images/ping/gunmw_ping_reqs.png)
+![Tiempo de respuesta](images/ping/gunmw_ping_response_time.png)
 
 
 ## Escenario basico
@@ -88,9 +88,9 @@ Summary report @ 18:06:29(-0300) 2018-10-08
 
 #### Screenshots
 
-![Escenarios Lanzados][images/basic/gun_basic_launches.png]
-![Requests][images/basic/gun_basic_reqs.png]
-![Tiempo de respuesta][images/basic/gun_basic_response_time.png]
+![Escenarios Lanzados](images/basic/gun_basic_launches.png)
+![Requests](images/basic/gun_basic_reqs.png)
+![Tiempo de respuesta](images/basic/gun_basic_response_time.png)
 
 
 ### Node
@@ -122,9 +122,9 @@ Summary report @ 17:59:21(-0300) 2018-10-08
 
 #### Screenshots
 
-![Escenarios Lanzados][images/basic/node_basic_launches.png]
-![Requests][images/basic/node_basic_reqs.png]
-![Tiempo de respuesta][images/basic/node_basic_response_time.png]
+![Escenarios Lanzados](images/basic/node_basic_launches.png)
+![Requests](images/basic/node_basic_reqs.png)
+![Tiempo de respuesta](images/basic/node_basic_response_time.png)
 
 
 ## Node replicado
@@ -156,9 +156,9 @@ Summary report @ 17:35:33(-0300) 2018-10-08
 
 #### Screenshots
 
-![Escenarios Lanzados][images/basic/noderep_basic_launches.png]
-![Requests][images/basic/noderep_basic_reqs.png]
-![Tiempo de respuesta][images/basic/noderep_basic_response_time.png]
+![Escenarios Lanzados](images/basic/noderep_basic_launches.png)
+![Requests](images/basic/noderep_basic_reqs.png)
+![Tiempo de respuesta](images/basic/noderep_basic_response_time.png)
 
 
 ## Gunicorn multiworker
@@ -190,6 +190,6 @@ Summary report @ 17:41:03(-0300) 2018-10-08
 
 #### Screenshots
 
-![Escenarios Lanzados][images/basic/gunmw_basic_launches.png]
-![Requests][images/basic/gunmw_basic_reqs.png]
-![Tiempo de respuesta][images/basic/gunmw_basic_response_time.png]
+![Escenarios Lanzados](images/basic/gunmw_basic_launches.png)
+![Requests](images/basic/gunmw_basic_reqs.png)
+![Tiempo de respuesta](images/basic/gunmw_basic_response_time.png)
