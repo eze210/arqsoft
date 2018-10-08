@@ -14,7 +14,7 @@ Memoria: 8 GB 1867 MHz DDR3
 
 ### Gunicorn
 
- - Comando: `./run-scenario basic gunicorn`
+ - Comando: `./run-scenario ping gunicorn`
 
 #### Screenshots
 
@@ -24,7 +24,7 @@ Memoria: 8 GB 1867 MHz DDR3
 
 ### Node
 
- - Comando: `./run-scenario basic gunicorn`
+ - Comando: `./run-scenario ping gunicorn`
 
 #### Screenshots
 
@@ -34,7 +34,7 @@ Memoria: 8 GB 1867 MHz DDR3
 
 ### Node replicado
 
- - Comando: `./run-scenario basic node_replicated`
+ - Comando: `./run-scenario ping node_replicated`
 
 #### Screenshots
 
@@ -44,7 +44,7 @@ Memoria: 8 GB 1867 MHz DDR3
 
 ### Gunicorn multiworker
 
- - Comando: `./run-scenario basic gunicorn_multiworker`
+ - Comando: `./run-scenario ping gunicorn_multiworker`
 
 #### Screenshots
 
