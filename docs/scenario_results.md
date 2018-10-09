@@ -5,9 +5,10 @@ Los siguientes resultados fueron obtenidos en una máquina con las siguientes sp
 
 ```
 Macbook con MacOS 10.13.5
-Docker for Mac 18.06.1-ce-mac73
+Docker for Mac 18.06.1-ce-mac73,
 Procesador: 2,7 GHz Intel Core i5
 Memoria: 8 GB 1867 MHz DDR3
+Recursos asignados a docker: 2 CPUs y 2GB de RAM
 ```
 
 ## Ping
@@ -24,7 +25,7 @@ Memoria: 8 GB 1867 MHz DDR3
 
 ### Node
 
- - Comando: `./run-scenario ping gunicorn`
+ - Comando: `./run-scenario ping node`
 
 #### Screenshots
 
@@ -163,7 +164,7 @@ Summary report @ 17:35:33(-0300) 2018-10-08
 
 ## Gunicorn multiworker
 
- - Comando: `./run-scenario basic node`
+ - Comando: `./run-scenario basic gunicorn_multiworker`
 
 #### Sumario
 
