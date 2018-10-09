@@ -93,15 +93,12 @@ Este escenario se desarrolla en las mismas fases que el escenario de ping, la di
 [Link a screenshots y sumarios](scenario_results.md#escenario-basico).
 
  - *Gunicorn*: Los requests rápidos se fueron bloqueando por otros que llevan tiempo, se fueron acumulando requests pendientes hasta llegar a un pico de casi 600 requests pendientes. A medida que llegaban más requests, el tiempo de respuesta promedio fue aumentando hasta llegar a un minuto, con picos de 1.5 minutos. En un momento los requests empezaron a fallar (entre los logs aparecian errores de nginx, aparentemente no puede soportar tantos requests encolados sin responder). En el sumario se puede ver que más de la mitad de los requests fallaron por algún motivo: 431 request devolvió 504 (Gateway timeout), 21 devolvió 502 (Bad gateway) y 85 fallaron con ECONNRESET.
-
  Por lejos mostró la peor performance entre todos los entornos. Esta performance tan pobre claramente se debe a que el procesamiento en este entorno se bloquea tanto con una request al endpoint externo, como con el procesamiento del cpu.
 
  - *Node*: la performance de este entorno fue notablemente mejor, aunque sigue sin ser aceptable. Durante la fase de la rampa se comportó relativamente bien (con un tiempo de respuesta un poco elevado, pero aceptable), pero en la fase de la carga comenzó a acumular requests pendientes aumento el tiempo de respuesta promedio. Ese último fue de 9 segundos a lo largo de toda la corrida, pero al final llegó a los 20, con picos de 50 segundos.
-
  Cabe notar en el sumario que todos los requests devolvieron exitosamente status 200, en vez de fallar como en el caso de gunicorn. Una gran parte de las mejoras se puede atribuir a que node no necesita bloquearse durante requests a servicios externos, y puede estar procesando otros requests en el transcurso.
 
  - *Node replicado*: este entorno dio muy buenos resultados en comparación con otros. El tiempo de respuesta no se degradó a medida que fue aumentando la carga, y se mantuvo en promedio en 200ms, con picos constantes de 3 segundos: se ve como los requests que llevan tiempo no degradan la performance de los requests que tienen que terminar rápido. Todos los requests terminaron exitosamente. Es notable también, que si bien tanto para requests externos como para uso de cpu se pide que terminen en 1 segundo, el *p95* del sumario es un poco mayor a 2 segundos: eso se debe a que docker tiene asignadas solo cores para utilizar.
 
  - *Gunicorn multiworker*: dio resultados parecidos al de *node replicado* a lo largo de la prueba, degradando bruscamente hacia el final. El tiempo de procesamiento mediano se mantuvo muy bajo a lo largo de la ejecución, pero al final se disparó hasta 3 segundos. Los picos se mantuvieron entre 2 y 3 segundos, disparandose hasta casi 5 al final.
-
  Es probable que se deba a un error en la toma de samples por parte de grafana: justo el último sample fue de requests cpu/externos que quedaron procesandose, después de terminar todos los requests rápidos. Si ese fue el caso, podemos declarar la performance de este entorno en el escenario dado como aceptable.
