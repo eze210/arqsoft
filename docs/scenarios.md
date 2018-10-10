@@ -103,7 +103,3 @@ Este escenario se desarrolla en las mismas fases que el escenario de ping, la di
  - *Gunicorn multiworker*: dio resultados parecidos al de *node replicado* a lo largo de la prueba, degradando bruscamente hacia el final. El tiempo de procesamiento mediano se mantuvo muy bajo a lo largo de la ejecución, pero al final se disparó hasta 3 segundos. Los picos se mantuvieron entre 2 y 3 segundos, disparandose hasta casi 5 al final.
  Es probable que se deba a un error en la toma de samples por parte de grafana: justo el último sample fue de requests cpu/externos que quedaron procesandose, después de terminar todos los requests rápidos. Si ese fue el caso, podemos declarar la performance de este entorno en el escenario dado como aceptable.
 
-
-
-### CPU Intensive
-
