@@ -1,0 +1,69 @@
+config:
+  environments:
+
+    node:
+      target: 'http://localhost:5555/node'
+      plugins:
+        statsd:
+          host: localhost
+          port: 8125
+          prefix: "artillery-node"
+
+    gunicorn:
+      target: 'http://localhost:5555/gunicorn'
+      plugins:
+        statsd:
+          host: localhost
+          port: 8125
+          prefix: "artillery-gunicorn"
+
+    node_replicated:
+      target: 'http://localhost:5555/node_replicated'
+      plugins:
+        statsd:
+          host: localhost
+          port: 8125
+          prefix: "artillery-node_replicated"
+
+    gunicorn_multiworker:
+      target: 'http://localhost:5555/gunicorn_mw'
+      plugins:
+        statsd:
+          host: localhost
+          port: 8125
+          prefix: "artillery-gunicorn_multiworker"
+
+  pool: 50 # All HTTP requests from all virtual users will be sent over the same connections
+
+  phases:
+    - name: Pings with some heavy load request
+      duration: 120
+      arrivalRate: 0
+      rampTo: 600
+
+  variables:
+    processTime:
+      - 5
+
+      # Solo pings
+# scenarios:
+#   - name: Simple get
+#     flow:
+#       - get:
+#           url: '/'
+
+
+      # Pings + some heavy load
+scenarios:
+  - name: Simple get
+    flow:
+      - get:
+          url: '/'
+    weight: 10000
+
+  - name: Heavy load
+    flow:
+      - get:
+          url: '/cpu?processTime={{ processTime }}'
+    weight: 1
+
