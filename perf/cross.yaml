@@ -1,0 +1,55 @@
+config:
+  environments:
+
+    node:
+      target: 'http://localhost:5555/node'
+      plugins:
+        statsd:
+          host: localhost
+          port: 8125
+          prefix: "artillery-node"
+
+    gunicorn:
+      target: 'http://localhost:5555/gunicorn'
+      plugins:
+        statsd:
+          host: localhost
+          port: 8125
+          prefix: "artillery-gunicorn"
+
+    node_replicated:
+      target: 'http://localhost:5555/node_replicated'
+      plugins:
+        statsd:
+          host: localhost
+          port: 8125
+          prefix: "artillery-node_replicated"
+
+    gunicorn_multiworker:
+      target: 'http://localhost:5555/gunicorn_mw'
+      plugins:
+        statsd:
+          host: localhost
+          port: 8125
+          prefix: "artillery-gunicorn_multiworker"
+
+  pool: 50 # All HTTP requests from all virtual users will be sent over the same connections
+
+  phases:
+    - name: Users arriving up to 10
+      duration: 40
+      arrivalRate: 0
+      rampTo: 10
+    - name: Constant load of 10 users
+      duration: 80
+      arrivalRate: 10
+
+  variables:
+    processTime:
+      - 1
+
+scenarios:
+  - name: Cross get
+    flow:
+      - get:
+          url: '/cross'
