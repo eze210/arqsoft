@@ -311,34 +311,35 @@ Summary report @ 00:36:15(-0300) 2018-10-10
 
 ## Node Replicado
 
- - Comando: `./run-scenario cpu node`
+ - Comando: `./run-scenario cpu node_replicated`
 
 #### Sumario
 
 ```
 All virtual users finished
-Summary report @ 00:11:48(-0300) 2018-10-10
-  Scenarios launched:  36257
-  Scenarios completed: 36058
-  Requests completed:  36058
-  RPS sent: 181.2
+Summary report @ 23:51:21(-0300) 2018-10-10
+  Scenarios launched:  36111
+  Scenarios completed: 36050
+  Requests completed:  36050
+  RPS sent: 237.34
   Request latency:
     min: 1.8
-    max: 953
-    median: 9.6
-    p95: 26.9
-    p99: 126.9
+    max: 7107.7
+    median: 10.7
+    p95: 33
+    p99: 3012.5
   Scenario counts:
-    Simple get: 36257 (100%)
+    Simple get: 36109 (99.994%)
+    Heavy load: 2 (0.006%)
   Codes:
-    200: 36058
+    200: 36050
   Errors:
-    ESOCKETTIMEDOUT: 199
+    ECONNRESET: 61
 ```
 
 #### Screenshots
 
-![Escenario completo](images/cpu/node_pings.png)
+![Escenario completo](images/cpu/node_replicated_cpu.png)
 
 
 ## Otra PC
