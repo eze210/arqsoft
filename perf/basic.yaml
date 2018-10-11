@@ -63,7 +63,7 @@ scenarios:
     weight: 1
 
 
-  - name: Extarnal request
+  - name: External request
     flow:
       - get:
           url: '/external?processTime={{ processTime }}'
