@@ -309,10 +309,7 @@ Summary report @ 00:36:15(-0300) 2018-10-10
 ![Tiempo de respuesta](images/cpu/gunmw_cpu_response_time.png)
 
 
-## Escenario con muchos requests del tipo Pings y ningún requests del tipo CPU
-
-
-## Node
+## Node Replicado
 
  - Comando: `./run-scenario cpu node`
 
