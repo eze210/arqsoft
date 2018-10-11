@@ -207,22 +207,7 @@ Procesador: Intel(R) Core(TM) i3-4005U CPU @ 1.70GHz
 Memoria: 8GB 1600 MHz DDR3 (0.6ns)
 ```
 
-## Escenario de requests cruzadosAll virtual users finished
-Summary report @ 01:45:43(-0300) 2018-10-11
-  Scenarios launched:  997
-  Scenarios completed: 997
-  Requests completed:  997
-  RPS sent: 8.18
-  Request latency:
-    min: 38.7
-    max: 6903
-    median: 55.5
-    p95: 2560.2
-    p99: 5085.9
-  Scenario counts:
-    Cross get: 997 (100%)
-  Codes:
-    500: 997
+## Escenario de requests cruzados
 
 ### Gunicorn
 
