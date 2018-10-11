@@ -121,8 +121,24 @@ Este escenario se desarrolla en las mismas fases que el escenario de ping, la di
 
 En este escenario se plantea un esquema en el que los servicios se llaman entre ellos: los endpoints de node llaman a los de gunicorn, y viceversa.
 El escenario tiene las mismas etapas que el de ping, pero usando el endpoint */cross* en vez de usar */*.
+Como se dijo anteriormente, el endpoint */cross* llama al endpoint */cpu* de otro entrono.
+*Nota:* diremos que el entorno al que se le llama a */cross* está "atendiendo", mientras que al que se le llama a */cpu* está "procesando".
 
 
 #### Resultados
 
 [Link a screenshots y sumarios](scenario_results.md#escenario-de-requests-cruzados).
+
+Para este escenario se ven resultados muy similares para los cuatro entornos:
+Se observa cómo se van acumulando requests que cada vez tardan más tiempo en ser respondidas debido a que también tardan más en ser atendidas.
+A continuación se explica por qué si bien los cuatro entornos no se comportan de la misma manera, muestran los mismos resultados:
+
+ - *Gunicorn*: este entorno tiene un solo worker atendiendo a todos los clientes, y delegando en uno de los endpoints del entorno *Node*. Esto causa que se pueda estar atendiendo sólo un request del cliente al mismo tiempo. Aquí el "cuello de botella" es el único worker de gunicorn, aunque solamente escalarlo (ver *Gunicorn multiworker*) tampoco hubiese mejorado la situación.
+
+ - *Node*: en este caso, se *atienden* varios requests de clientes al mismo tiempo, pero se delegan todos en un único worker de gunicorn. Entonces si bien se están *atendiendo* varias requests simultáneas, se está *procesando* sólo una request al mismo tiempo, siendo nuevamente el único worker de *Gunicorn* el responsable.
+
+ - *Node replicado*: para seguir ilustrando el caso, el endpoint de este entorno delega en el único worker del entorno *Gunicorn*. Se puede entender que este entorno es un caso en el que se evolucionó desde la arquitectura anterior (Node), escalando en el lugar equivocado, ya que el cuello de botella estaba en el servicio externo.
+
+ - *Gunicorn multiworker*: por último, el caso en que el servidor que se escala es el de *Gunicorn*, cuando este está más cerca del cliente (y llama al endpoint de *Node*), el cuello de botella pasa a estar en el endpoint */cpu* de *Node*, ya que está usando su cpu para procesar de a una request a la vez. En este caso el asincronismo de Node no ayuda porque se está usando el hilo para hacer cálculos en vez de establecer un evento y su handler (como pasaba en el endpoint de */timeout*, o bien cuando *Node* estaba atendiendo en vez de procesar en este mismo escenario).
+
+ En conclusión, si el análisis anterior es acertado, una arquitectura en la que se llame al entorno *Node* para atender, y a alguno de los replicados para procesar, hubiese aumentado la performance.
