@@ -29,7 +29,7 @@ def timeout():
 @app.route('/cpu')
 def cpu_usage():
     process_time = request.args.get('processTime') or DEFAULT_PROCESS_TIME
-    app.logger.info('Requested /cpu, using cpu for % seconds', process_time)
+    app.logger.info('Requested /cpu, using cpu for %s seconds', process_time)
 
     start = time.time()
 
@@ -43,14 +43,24 @@ def cpu_usage():
 @app.route('/external')
 def external_request():
     process_time = request.args.get('processTime') or DEFAULT_PROCESS_TIME
-    process_time_in_seconds = int(process_time) * 1000
-    url = 'https://httpstat.us/200?sleep=' + str(process_time_in_seconds)
+    process_time_in_milliseconds = int(process_time) * 1000
+    url = 'https://httpstat.us/200?sleep=' + str(process_time_in_milliseconds)
 
     app.logger.info('Requested /external, making a request to ' + url)
     response = urllib.request.urlopen(url)
 
     app.logger.info('External endpoint responded, returning!')
     return 'External service request finished with status: ' + str(response.status)
+
+
+@app.route('/cross')
+def cross():
+    node_url = 'http://node:3000/cpu?processTime=1'
+    app.logger.info('Attempting to send a request to: ' + node_url)
+    response = urllib.request.urlopen(node_url)
+    print(response)
+    app.logger.info('Response: ' + str(response.status))
+    return 'Response: ' + str(response.status)
 
 
 if __name__ == '__main__':

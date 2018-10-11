@@ -41,6 +41,7 @@ Ambos microservicios tienen los mismos endpoints:
  - `/timeout` llama a sleep por un tiempo determinado antes de retornar.
  - `/cpu` hace un procesamiento pesado por un tiempo determinado, tratando de usar una máxima cantidad de CPU.
  - `/external` llama a un servicio externo que retorna después de un tiempo determinado. Para este endpoint se utilizó un servicio al que se le puede especificar cuánto tiempo esperar antes de retornar.
+ - `/cross` llama al endpoint `/cpu` del otro microservicio: el de node llama al de gunicorn, y viceversa.
 
 Todos los endpoints que hacen procesamiento por un tiempo permiten especificar ese tiempo mediante un parámetro adicional en el request.
 
@@ -114,3 +115,14 @@ Este escenario se desarrolla en las mismas fases que el escenario de ping, la di
 
  - *Gunicorn multiworker*: dio resultados parecidos al de *node replicado* a lo largo de la prueba, aunque degradados bruscamente hacia el final. La mediana del tiempo de procesamiento se mantuvo muy baja a lo largo de la ejecución, pero al final se disparó hasta 3 segundos. Los picos se mantuvieron entre 2 y 3 segundos, disparandose hasta casi 5 al final. Esto responde al comportamiento que se describió en general antes de hablar de cada caso.
  Es probable que el valor de casi 5 segundos se deba a que justo la última ventana de samples fue de requests cpu/externos que quedaron procesándose después de terminar todos los requests rápidos. Si ese fue el caso, podemos declarar la performance de este entorno en el escenario dado como aceptable. Incluso en algún caso real podría ser mejor/deseable que se dé prioridad a las requests que deberían tardar menos, dejando las que se espera que tarden más para el final, y en dicho caso los resultados de este entorno podrían considerarse mejores que los de *node replicado*.
+
+
+### Requests Cruzados
+
+En este escenario se plantea un esquema en el que los servicios se llaman entre ellos: los endpoints de node llaman a los de gunicorn, y viceversa.
+El escenario tiene las mismas etapas que el de ping, pero usando el endpoint */cross* en vez de usar */*.
+
+
+#### Resultados
+
+[Link a screenshots y sumarios](scenario_results.md#escenario-de-requests-cruzados).

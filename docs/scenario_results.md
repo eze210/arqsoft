@@ -1,7 +1,7 @@
 
 # Resultados de las corridas
 
-Los siguientes resultados fueron obtenidos en una máquina con las siguientes specs:
+Los siguientes resultados fueron obtenidos en dos máquinas con las siguientes specs (ambas):
 
 ```
 Macbook con MacOS 10.13.5
@@ -194,3 +194,174 @@ Summary report @ 17:41:03(-0300) 2018-10-08
 ![Escenarios Lanzados](images/basic/gunmw_basic_launches.png)
 ![Requests](images/basic/gunmw_basic_reqs.png)
 ![Tiempo de respuesta](images/basic/gunmw_basic_response_time.png)
+
+
+## Otra PC
+
+Las mediciones que aparecen de aquí en adelante fueron obtenidas en otra máquina, con las siguientes specs:
+
+```
+PC con Ubuntu 14.04
+Docker 18.06.1-ce, build e68fc7a,
+Procesador: Intel(R) Core(TM) i3-4005U CPU @ 1.70GHz
+Memoria: 8GB 1600 MHz DDR3 (0.6ns)
+```
+
+## Escenario de requests cruzadosAll virtual users finished
+Summary report @ 01:45:43(-0300) 2018-10-11
+  Scenarios launched:  997
+  Scenarios completed: 997
+  Requests completed:  997
+  RPS sent: 8.18
+  Request latency:
+    min: 38.7
+    max: 6903
+    median: 55.5
+    p95: 2560.2
+    p99: 5085.9
+  Scenario counts:
+    Cross get: 997 (100%)
+  Codes:
+    500: 997
+
+### Gunicorn
+
+ - Comando: `./run-scenario cross gunicorn`
+
+#### Sumario
+
+```
+All virtual users finished
+Summary report @ 01:15:47(-0300) 2018-10-11
+  Scenarios launched:  999
+  Scenarios completed: 901
+  Requests completed:  901
+  RPS sent: 4.8
+  Request latency:
+    min: 1008.4
+    max: 91083.6
+    median: 60002.6
+    p95: 91051
+    p99: 91073.9
+  Scenario counts:
+    Cross get: 999 (100%)
+  Codes:
+    200: 81
+    504: 820
+  Errors:
+    ECONNRESET: 98
+```
+
+#### Screenshots
+
+![Escenarios Lanzados](images/cross/gun_cross_launches.png)
+![Requests](images/cross/gun_cross_reqs.png)
+![Tiempo de respuesta](images/cross/gun_cross_response_time.png)
+
+
+### Node
+
+ - Comando: `./run-scenario cross node`
+
+#### Sumario
+
+```
+All virtual users finished
+Summary report @ 01:32:53(-0300) 2018-10-11
+  Scenarios launched:  1002
+  Scenarios completed: 912
+  Requests completed:  912
+  RPS sent: 7.33
+  Request latency:
+    min: 1017.6
+    max: 60174
+    median: 59999.9
+    p95: 60004.5
+    p99: 60007
+  Scenario counts:
+    Cross get: 1002 (100%)
+  Codes:
+    200: 81
+    502: 326
+    504: 505
+  Errors:
+    ECONNRESET: 90
+```
+
+#### Screenshots
+
+![Escenarios Lanzados](images/cross/node_cross_launches.png)
+![Requests](images/cross/node_cross_reqs.png)
+![Tiempo de respuesta](images/cross/node_cross_response_time.png)
+
+
+## Node replicado
+
+ - Comando: `./run-scenario cross node_replicated`
+
+#### Sumario
+
+```
+All virtual users finished
+Summary report @ 01:40:06(-0300) 2018-10-11
+  Scenarios launched:  1010
+  Scenarios completed: 851
+  Requests completed:  851
+  RPS sent: 4.95
+  Request latency:
+    min: 0.9
+    max: 120002
+    median: 60000.3
+    p95: 60005.3
+    p99: 120000
+  Scenario counts:
+    Cross get: 1010 (100%)
+  Codes:
+    200: 87
+    502: 764
+  Errors:
+    ECONNRESET: 131
+    ESOCKETTIMEDOUT: 28
+```
+
+#### Screenshots
+
+![Escenarios Lanzados](images/cross/noderep_cross_launches.png)
+![Requests](images/cross/noderep_cross_reqs.png)
+![Tiempo de respuesta](images/cross/noderep_cross_response_time.png)
+
+
+## Gunicorn multiworker
+
+ - Comando: `./run-scenario cross gunicorn_multiworker`
+
+#### Sumario
+
+```
+All virtual users finished
+All virtual users finished
+Summary report @ 02:05:04(-0300) 2018-10-11
+  Scenarios launched:  1004
+  Scenarios completed: 907
+  Requests completed:  907
+  RPS sent: 4.86
+  Request latency:
+    min: 1008.2
+    max: 91082.9
+    median: 60001.8
+    p95: 91049
+    p99: 91076
+  Scenario counts:
+    Cross get: 1004 (100%)
+  Codes:
+    200: 273
+    504: 634
+  Errors:
+    ECONNRESET: 97
+```
+
+#### Screenshots
+
+![Escenarios Lanzados](images/cross/gunmw_cross_launches.png)
+![Requests](images/cross/gunmw_cross_reqs.png)
+![Tiempo de respuesta](images/cross/gunmw_cross_response_time.png)
